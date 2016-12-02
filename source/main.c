@@ -19,13 +19,19 @@
 #define MEM_SIZE 128
 #define BUF_SIZE 128
 
-static void dump_mem(const uint8_t *mem)
+static void dump_mem(uint8_t *mem, size_t address)
 {
   size_t i;
 
   i = 0;
   while (i < MEM_SIZE)
-    printf("|%02X| ", (unsigned int) mem[i++]);
+  {
+    if (i == address)
+      printf("\x1b[0;31m|%02X|\x1b[0m ", (unsigned int) mem[i]);
+    else
+      printf("|%02X| ", (unsigned int) mem[i]);
+    ++i;
+  }
   my_putc(CHAR_NEWLINE);
 }
 
@@ -48,7 +54,7 @@ static int edit(t_args *args)
     if (!my_strcmp(buf, CMD_EXIT))
       keep_running = 0;
     else if (!my_strcmp(buf, CMD_DISP))
-      dump_mem(mem);
+      dump_mem(mem, address);
     else if (!my_strcmp(buf, CMD_JUMP))
     {
       printf("Address: 0x");
