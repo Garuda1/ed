@@ -43,7 +43,7 @@ static int edit(t_args *args)
   keep_running = 1;
   while (keep_running)
   {
-    printf("[ed | %s] ", args -> file_name);
+    printf("[ed | %s | address=%04X] ", args -> file_name, (unsigned int)address);
     scanf("%s", buf);
     if (!my_strcmp(buf, CMD_EXIT))
       keep_running = 0;
