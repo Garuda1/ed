@@ -79,7 +79,7 @@ static int edit(t_args *args)
     }
     else if (!my_strcmp(buf, CMD_SAVE))
     {
-      fd = open(args -> file_name, O_WRONLY);
+      fd = open(args -> file_name, O_CREAT | O_WRONLY);
       write(fd, mem, MEM_SIZE);
       close(fd);
       printf("File saved\n");
