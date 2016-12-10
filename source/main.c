@@ -76,6 +76,8 @@ static int edit(t_args *args)
     {
       printf("Value (2 digits, hex): 0x");
       scanf("%02X", (unsigned int *) &(mem[address]));
+      if (address < (MEM_SIZE -1))
+        ++address;
     }
     else if (!my_strcmp(buf, CMD_SAVE))
     {
